@@ -1,0 +1,79 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  USER
+  TEACHER
+}
+
+model User{
+  id Int @id @default(autoincrement())
+  username String @unique
+  password String
+  active Boolean @default(true)
+  type Role @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime  @default(now())
+  classes Class[]
+}
+
+model Student{
+  id Int @id @default(autoincrement())
+  name String @unique
+  class  Class  @relation(fields: [classId], references: [id])
+  createdAt DateTime @default(now())
+  classId  Int
+}
+
+model Class{
+  id Int @id @default(autoincrement())
+  name String @unique
+  klasseKode String @unique @default("")
+  room String @unique
+  createdAt DateTime @default(now())
+  school String @unique
+  user   User   @relation(fields: [userId], references: [id])
+  userId  Int
+  Students Student[]
+}
+
+model Map{
+  id Int @id @default(autoincrement())
+  name String
+  createdAt DateTime
+  active Boolean
+}
+
+
+model School{
+  id Int @id @default(autoincrement())
+  name String @unique
+  createdAt DateTime
+}
+
+
+model group{
+  id Int @id @default(autoincrement())
+  name String 
+  createdAt DateTime
+  UpdatedAt DateTime
+  active Boolean
+  members member[]
+}
+
+model member{
+  id Int @id @default(autoincrement())
+  groupId Int
+  userId Int
+  createdAt DateTime
+  UpdatedAt DateTime
+  active Boolean
+  group  group  @relation(fields: [groupId], references: [id])
+}

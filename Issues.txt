@@ -1,0 +1,11 @@
+Issues/Bugs/til forbedelse:
+- Når man logger inn, Det kommer ikke data på profile component med engang. det må refreshes.
+LOGIN:
+	-- Samme for når token utløper.
+	-- Sjekk for at token er gyldig 
+	-- 
+- Styling generelt
+- Optimization:
+	-- bruke opplevelse er ikke helt greit; f.eks når det loader ny data, blir det tomt. (forslag: loading... kan vises)
+	-- 
+- 

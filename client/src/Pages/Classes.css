@@ -1,0 +1,42 @@
+.classes {
+  width: 80vw;
+  height: 100vh;
+
+  font-size: 21px;
+}
+
+.your-classes-header {
+  display: flex;
+  align-items: center;
+  margin: 10px 0px;
+  margin-bottom: 20px;
+  margin-top: 100px;
+  padding-bottom: 0px;
+  /* border-bottom: 0.2px solid rgb(180, 180, 180);
+  border-top: 0.2px solid rgb(180, 180, 180); */
+  width: 100%;
+}
+
+.your-classes-header p {
+  margin-left: 10px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.classes-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.classes-list a {
+  text-decoration: none;
+  padding: 10px;
+  min-width: 150px;
+  text-align: center;
+  background-color: #180a0a;
+  color: #fff;
+  margin: 10px;
+  border-radius: 10px;
+}

@@ -1,0 +1,42 @@
+.Profile {
+  position: absolute;
+  top: 20px;
+  right: 50px;
+  background-color: #fff;
+  padding: 20px;
+  width: 150px;
+  height: max-content;
+  border: 1px solid #000;
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  -webkit-box-shadow: -1px 5px 15px -5px #000000;
+  box-shadow: -1px 5px 15px -5px #000000;
+}
+
+.user-name {
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  width: 100%;
+  border-bottom: 0.5px solid #000;
+}
+
+.user-type {
+  font-size: 15px;
+  font-weight: light;
+}
+
+.Profile-close {
+  font-size: 15px;
+  position: absolute;
+  top: 25px;
+  right: 10px;
+}

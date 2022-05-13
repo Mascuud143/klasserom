@@ -1,0 +1,33 @@
+.class {
+  width: 80vw;
+  height: 100vh;
+
+  font-size: 21px;
+  z-index: 2000;
+}
+.class-student {
+  border: 1px solid #000;
+  padding: 7px;
+  border-radius: 10px;
+  margin: 10px;
+
+  font-size: 15px;
+}
+
+.students-list {
+  width: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 100px;
+  align-items: center;
+}
+
+.leggtil-elev button {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background-color: #180a0a;
+  color: white;
+  cursor: pointer;
+  margin-top: 20px;
+}
