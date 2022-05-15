@@ -1,11 +1,28 @@
 Issues/Bugs/til forbedelse:
-- Når man logger inn, Det kommer ikke data på profile component med engang. det må refreshes.
+
+UI:
+
+	-- Når man logger inn, Det kommer ikke data på profile component med engang. det må refreshes.
+	-- Styling generelt
+
 LOGIN:
-	-- Samme for når token utløper.
 	-- Sjekk for at token er gyldig 
 	-- 
-- Styling generelt
+
 - Optimization:
 	-- bruke opplevelse er ikke helt greit; f.eks når det loader ny data, blir det tomt. (forslag: loading... kan vises)
 	-- 
 - 
+
+PASSWORD:
+	-- glemt / endre passord må implementres, la brukere/lærere endre passord
+	-- 
+
+
+RYDDING:
+	-- Det er mye repetisjon av kode
+	-- Trenger mer kommentar som forklarer kode
+
+SERVER:
+	-- Server responses kunne ha vært bedre.
+	-- 

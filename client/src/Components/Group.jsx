@@ -47,7 +47,11 @@ export default function Group({ open, close, classes }) {
                 <div className="group-title">Group {index + 1}</div>
                 <div className="group-members">
                   {group.map((student) => {
-                    return <div className="group-member">{student.name}</div>;
+                    return (
+                      <div draggable className="group-member">
+                        {student.name}
+                      </div>
+                    );
                   })}
                 </div>
               </div>
@@ -89,7 +93,7 @@ export default function Group({ open, close, classes }) {
   return (
     <div className="modal-form-group">
       <div className="modal-form-group-header">
-        <div>
+        <div className="modal-form-group-header-title">
           <div className="bold"> Opprett Nytt </div> *gruppeoppsett
         </div>
         <div onClick={() => close()} className="modal-form-group-close">
@@ -112,11 +116,21 @@ export default function Group({ open, close, classes }) {
             </select>
             <div>
               <label htmlFor="project-title">Prosjekt tittel</label>
-              <input name="title" id="project-title" type="text" />
+              <input
+                placeholder="Tittel av oppgaven"
+                name="title"
+                id="project-title"
+                type="text"
+              />
             </div>
             <div>
               <label htmlFor="antall-gruppe">antall grupper</label>
-              <input name="antall" id="antall-grupper" type="text" />
+              <input
+                placeholder="3"
+                name="antall"
+                id="antall-grupper"
+                type="text"
+              />
             </div>
 
             <button type="submit">Randomize</button>

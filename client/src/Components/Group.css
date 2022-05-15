@@ -6,7 +6,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: azure;
+  background-color: #fff;
   border-radius: 10px;
   padding: 20px;
   padding: 20px 40px;
@@ -39,8 +39,8 @@
 
 .save-groups button {
   border-style: none;
-  border-radius: 10px;
-  background-color: #180a0a;
+  border-radius: 50px;
+  background-color: #dfba58;
   padding: 10px;
   color: white;
   cursor: pointer;
@@ -54,12 +54,12 @@
   font-size: 16px;
   margin-top: 10px;
   margin-bottom: 10px;
-  width: 70%;
+  /* width: 70%; */
   padding: 10px;
   border-radius: 20px;
   border: none;
-  background-color: #180a0a;
-  color: white;
+  background-color: #dfba58;
+  color: #3a2b2b;
   cursor: pointer;
 }
 
@@ -68,6 +68,13 @@
   margin: 10px;
   border-radius: 10px;
   padding: 10px;
+}
+
+#antall-grupper {
+  text-align: center;
+  padding: 10px;
+  width: 50px;
+  border-radius: 20px;
 }
 
 .modal-form-group input {
@@ -107,19 +114,27 @@
 
 .group-options {
   color: #fff;
-  background-color: #180a0aa9;
+  font-size: 21px;
+  background-color: #180a0a;
   padding: 20px;
   border-radius: 10px;
+}
+main {
+  width: 100%;
 }
 
 .group-display {
   flex-direction: column;
+  margin-top: 30px;
 }
 
 .groups {
-  padding: 20px;
+  width: 80%;
+  padding: 0px;
+  height: auto;
   border-radius: 10px;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .group-member {
