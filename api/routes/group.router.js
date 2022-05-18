@@ -4,5 +4,5 @@ const { restrictTo, protect } = require("../util/auth");
 
 const router = express.Router();
 
-router.post("/group", protect, restrictTo("ADMIN"), register);
+router.post("/", protect, register);
 module.exports = router;
