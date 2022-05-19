@@ -10,6 +10,7 @@ import Students from "./Pages/Students";
 import Dashboard from "./Pages/Dashboard";
 import Classes from "./Pages/classes";
 import Class from "./Pages/Class";
+import Groups from "./Pages/Groups";
 import Nav from "./Pages/layout/Nav";
 import Admin from "./Pages/Admin";
 
@@ -35,6 +36,10 @@ function App() {
         <Route path="/Dashboard" element={<Dashboard userCurrent={user} />} />
         <Route path="/classes" element={<Classes user={user} />} />
         <Route path="/classes/:classId" element={<Class userClass={user} />} />
+        <Route
+          path="/classes/:classId/groups"
+          element={<Groups userClass={user} />}
+        />
         <Route path="/admin" element={<Admin userClass={user} />} />
       </Routes>
     </BrowserRouter>

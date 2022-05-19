@@ -26,10 +26,13 @@ export default function Nav({ currentUser }) {
       </div>
       <div className="profile">
         {currentUser && currentUser.type == "TEACHER" && (
-          <Link className="nav-element" to="/classes">
-            Klasser
-          </Link>
+          <div>
+            <Link className="nav-element" to="/classes">
+              Klasser
+            </Link>
+          </div>
         )}
+        {}
         <p>
           <AiFillSetting onClick={openProfile} size={40} />
         </p>

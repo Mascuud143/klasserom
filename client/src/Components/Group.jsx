@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./Group.css";
 import { Link, useNavigate } from "react-router-dom";
-import { getStudents } from "../services/class.service";
-
-import { createClass } from "../services/class.service";
+import { saveGroups } from "../services/class.service";
 import { MdGroups } from "react-icons/md";
 
 export default function Group({ open, close, classes }) {
@@ -13,6 +11,35 @@ export default function Group({ open, close, classes }) {
   const [groups, setGroups] = useState([]);
   const [groupDisplay, setGroupDisplay] = useState(false);
   const [projectTitle, setProjectTitle] = useState("");
+
+  // useEffect(()=>{
+  //   setCurrentClass(classes[0].name);
+  // },[])
+  async function createGroup(e) {
+    e.preventDefault();
+    //token, title, members, className
+
+    //unpack groups
+    let groupMembers = groups.map((group) => {
+      return group.map((member) => {
+        return member.name;
+      });
+    });
+    console.log(groupMembers);
+
+    const token = localStorage.getItem("token");
+    if (groups.length > 1) {
+      console.log(groups);
+      const newGroups = await saveGroups(
+        token,
+        projectTitle,
+        groupMembers,
+        currentClass
+      );
+    }
+
+    navigate(`/classes/${currentClass}/groups`);
+  }
 
   const randomizeHandler = (e) => {
     e.preventDefault();
@@ -43,12 +70,16 @@ export default function Group({ open, close, classes }) {
         <div className="groups">
           {groups.map((group, index) => {
             return (
-              <div className="group">
+              <div key={index} className="group">
                 <div className="group-title">Group {index + 1}</div>
                 <div className="group-members">
                   {group.map((student) => {
                     return (
-                      <div draggable className="group-member">
+                      <div
+                        key={student.name}
+                        draggable
+                        className="group-member"
+                      >
                         {student.name}
                       </div>
                     );
@@ -100,7 +131,7 @@ export default function Group({ open, close, classes }) {
           X
         </div>
         <div className="save-groups">
-          <button>Lagre</button>
+          <button onClick={createGroup}>Lagre</button>
         </div>
       </div>
       <form onSubmit={randomizeHandler} action="#">

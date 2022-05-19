@@ -26,7 +26,7 @@ model User{
 
 model Student{
   id Int @id @default(autoincrement())
-  name String @unique
+  name String 
   class  Class  @relation(fields: [classId], references: [id])
   createdAt DateTime @default(now())
   classId  Int
@@ -42,6 +42,7 @@ model Class{
   user   User   @relation(fields: [userId], references: [id])
   userId  Int
   Students Student[]
+  Projects Project[]
 }
 
 model Map{
@@ -59,21 +60,42 @@ model School{
 }
 
 
-model group{
+model Group{
   id Int @id @default(autoincrement())
-  name String 
-  createdAt DateTime
-  UpdatedAt DateTime
-  active Boolean
-  members member[]
+  createdAt DateTime @default(now())
+  UpdatedAt DateTime @default(now())
+  active Boolean @default(true)
+  
+   Group_members GroupMembers[]
+  project   Project   @relation(fields: [projectId], references: [id])
+  projectId  Int
 }
 
-model member{
+model Member{
   id Int @id @default(autoincrement())
-  groupId Int
-  userId Int
+  name String
   createdAt DateTime
   UpdatedAt DateTime
-  active Boolean
-  group  group  @relation(fields: [groupId], references: [id])
+  group_members  GroupMembers  @relation(fields: [groupMemberId], references: [id])
+  groupMemberId Int
+}
+model GroupMembers{
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  memeberList String
+  UpdatedAt DateTime @default(now())
+  group  Group  @relation(fields: [groupId], references: [id])
+  groupId Int
+  members Member[]
+}
+
+model Project{
+  id Int @id @default(autoincrement())
+  title String  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  active Boolean @default(true)
+  class   Class   @relation(fields: [classId], references: [id])
+  classId  Int
+  groups Group[]
 }

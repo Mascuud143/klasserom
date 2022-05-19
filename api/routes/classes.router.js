@@ -5,6 +5,8 @@ const {
   getClasses,
   generateKlassekode,
 } = require("../controllers/classes.controller");
+
+const { createGroup, getGroups } = require("../controllers/group.controller");
 const {
   getStudents,
   createStudent,
@@ -18,6 +20,8 @@ router
   .get("/:id", protect, getClass)
   .get("/", protect, getClasses)
   .get("/:id/students", protect, restrictTo("TEACHER"), getStudents)
-  .post("/:id/students", protect, restrictTo("TEACHER"), createStudent);
+  .post("/:id/students", protect, restrictTo("TEACHER"), createStudent)
+  .post("/:id/groups", protect, restrictTo("TEACHER"), createGroup)
+  .get("/:id/groups", protect, restrictTo("TEACHER"), getGroups);
 
 module.exports = router;

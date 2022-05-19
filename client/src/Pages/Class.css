@@ -31,3 +31,20 @@
   cursor: pointer;
   margin-top: 20px;
 }
+
+.class-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.class-header a {
+  border-style: none;
+  /* background-color: #180a0a; */
+  padding: 7px;
+  border-radius: 10px;
+  /* text-decoration: none; */
+  /* color: #fff; */
+  color: #180a0a;
+}

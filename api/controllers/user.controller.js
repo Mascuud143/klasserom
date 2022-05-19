@@ -69,7 +69,7 @@ module.exports.login = async function (req, res) {
 
     //tildel token
     const token = await jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
+      expiresIn: "4h",
     });
 
     return res.json({ token });

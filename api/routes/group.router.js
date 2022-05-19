@@ -1,8 +1,8 @@
 const express = require("express");
-const { register, login, me } = require("../controllers/user.controller");
+const { createGroup } = require("../controllers/group.controller");
 const { restrictTo, protect } = require("../util/auth");
 
 const router = express.Router();
 
-router.post("/", protect, register);
+router.post("/", protect, createGroup);
 module.exports = router;

@@ -43,7 +43,10 @@ export default function Class({ userClass }) {
         <NewStudent theClassId={classId} close={closeStudentModal} />
       )}
       {newStudentOpen && <Backdrop close={closeStudentModal} />}
-      <h1>Klasse {classId}</h1>
+      <div className="class-header">
+        <h1>Klasse {classId}</h1>
+        <Link to={`/classes/${classId}/groups`}>Prosjekter</Link>
+      </div>
       <div className="students-list">
         {students.map((s) => {
           return (
