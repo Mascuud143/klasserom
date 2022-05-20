@@ -21,10 +21,13 @@
   color: #fff;
   padding: 20px;
   margin: 20px;
+
+  -webkit-box-shadow: 5px 6px 13px -9px #000000;
+  box-shadow: 5px 6px 13px -9px #000000;
 }
 
 .class-groups {
-  background-color: #f2f2f2;
+  background-color: #dfba58;
   color: #180a0a;
   padding: 10px;
   border-radius: 10px;
@@ -57,6 +60,7 @@
   align-items: center;
   justify-content: space-between;
   text-align: center;
+  width: 100%;
 }
 
 .class-group-members {
@@ -72,4 +76,9 @@
   border-radius: 10px;
   border: 1px solid #000;
   padding: 10px;
+}
+
+.project-header-toggle {
+  background-color: red;
+  cursor: pointer;
 }

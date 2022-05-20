@@ -10,6 +10,7 @@ export default function Groups({ userClass }) {
   const { classId } = useParams();
   const [projects, setProjects] = useState([]);
   const [groups, setGroups] = useState([]);
+  const [projectGroups, setProjectGroups] = useState([]);
 
   useEffect(() => {
     getProjects();
@@ -19,18 +20,32 @@ export default function Groups({ userClass }) {
     const token = localStorage.getItem("token");
     const projects = await getGroups(token, classId);
     setProjects(projects);
-    console.log(projects);
     //unpack and set group
-    const groups = [];
-    projects.map((project) => {
-      console.log(project.Group_members);
-      project.Group_members.map((m) => {
-        groups.push(m.memeberList.split(" "));
-      });
-    });
 
-    console.log(groups);
-    setGroups(groups);
+    /*
+  [
+    {project:{title}, members:[]}
+  ] 
+*/
+    console.log(projects);
+    const groups = [];
+    const projectGroups = projects.map((project, i) => {
+      console.log(project);
+      const g = {};
+      g.project = project.project;
+
+      const members = [];
+      g.members = project.Group_members;
+      g.members = g.members.map((m) => {
+        return m.memeberList.split(" ");
+      });
+
+      return g;
+    });
+    console.log(projectGroups);
+    // console.log(groups);
+    setGroups(projectGroups);
+    setProjectGroups(projectGroups);
   }
 
   function toggleGroupBox(e) {
@@ -41,31 +56,33 @@ export default function Groups({ userClass }) {
     groupsBox.classList.toggle("hidden");
   }
 
-  return (
-    <div className="groups">
-      <Nav currentUser={userClass} />
-      <h1>Projects</h1>
-      <div className="groups-container">
-        {projects.map((project) => (
-          <div className="group-box" key={project.id}>
-            <div className="class-group-header">
-              <p className="project-title">{project.project.title}</p>
+  console.log(projectGroups);
+  if (projectGroups.length > 0) {
+    return (
+      <div className="groups">
+        <Nav currentUser={userClass} />
+        <h1>{classId} - Projects</h1>
+        <div className="groups-container">
+          {projectGroups.map((project) => (
+            <div className="group-box" key={project.project.id}>
+              <div className="class-group-header">
+                <p className="project-title">{project.project.title}</p>
 
-              <MdOutlineExpandMore onClick={toggleGroupBox} size={40} />
-            </div>
-            <div className="class-groups hidden">
-              {groups.map((group, index) => (
-                <div className="class-group">
-                  <p className="class-group-title">Group {index + 1}</p>
-                  <div className="class-group-members">
-                    {group.map((member) => (
-                      <div className="class-group-member">{member}</div>
-                    ))}
+                <MdOutlineExpandMore onClick={toggleGroupBox} size={40} />
+              </div>
+              <div className="class-groups hidden">
+                {project.members.map((group, index) => (
+                  <div className="class-group">
+                    <p className="class-group-title">Group {index + 1}</p>
+                    <div className="class-group-members">
+                      {group.map((member) => (
+                        <div className="class-group-member">{member}</div>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
-            {/* 
+                ))}
+              </div>
+              {/* 
             <div className="class-groups">
               <div className="class-group">
                 <p className="class-group-title">Group 1</p>
@@ -89,9 +106,12 @@ export default function Groups({ userClass }) {
                 </div>
               </div>
             </div> */}
-          </div>
-        ))}
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return <div>Loading groups.....</div>;
+  }
 }

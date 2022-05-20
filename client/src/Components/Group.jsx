@@ -48,6 +48,8 @@ export default function Group({ open, close, classes }) {
     const shuffled = shuffle([...students]);
 
     const groups = createGroups(shuffled, numberOfGroups);
+    setGroups([]);
+    console.log(groups);
     setGroups(groups);
     console.log(groups);
     setProjectTitle(e.target.title.value);
