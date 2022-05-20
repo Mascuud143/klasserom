@@ -172,11 +172,11 @@ export default function Group({ open, close, classes }) {
       </form>
 
       {groupDisplay && (
-        <main className="group-display">
+        <div className="group-display">
           <div className="group-project-title">#{projectTitle}</div>
 
           {displayGroups()}
-        </main>
+        </div>
       )}
     </div>
   );

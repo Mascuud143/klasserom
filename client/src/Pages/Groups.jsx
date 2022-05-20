@@ -66,7 +66,7 @@ export default function Groups({ userClass }) {
   console.log(projectGroups);
   if (projectGroups.length > 0) {
     return (
-      <div className="groups">
+      <div className="groups-page">
         <Nav currentUser={userClass} />
         <h1>{classId} - Projects</h1>
         <div className="groups-container">
@@ -78,7 +78,7 @@ export default function Groups({ userClass }) {
                   Uka {project.project.week} -{" "}
                   {new Date(project.project.createdAt).getFullYear()}
                 </p>
-                <MdOutlineExpandMore onClick={toggleGroupBox} size={40} />
+                <MdOutlineExpandMore onClick={toggleGroupBox} size={45} />
               </div>
               <div className="class-groups hidden">
                 {project.members.map((group, index) => (
