@@ -1,6 +1,9 @@
 const { PrismaClient } = require("@prisma/client");
-const { categories, products } = require("./data.js");
 const prisma = new PrismaClient();
+const bycrypt = require("bcryptjs");
+
+const salt = bycrypt.genSaltSync(10);
+const hash = bycrypt.hashSync("admin", salt);
 
 //Runs at the start of database creation
 // initializes admin user and populates database with data
@@ -10,8 +13,8 @@ const load = async () => {
     await prisma.user.create({
       data: {
         username: "admin",
-        password: "admin",
-        type: "admin",
+        password: hash,
+        type: "ADMIN",
       },
     });
     console.log("Initialized admin user");

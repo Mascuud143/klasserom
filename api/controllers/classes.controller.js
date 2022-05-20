@@ -31,7 +31,7 @@ module.exports.createClass = async function (req, res) {
   const classCode = generateKlassekode();
 
   //checks for existing classkode
-  const classCodeExists = await prisma.class.findUnique({
+  const classCodeExists = await prisma.class.find({
     where: {
       klasseKode: classCode,
     },
