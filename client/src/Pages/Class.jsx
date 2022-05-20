@@ -48,13 +48,15 @@ export default function Class({ userClass }) {
         <Link to={`/classes/${classId}/groups`}>Prosjekter</Link>
       </div>
       <div className="students-list">
-        {students.map((s) => {
-          return (
-            <div className="class-student" key={s.name}>
-              {s.name}
-            </div>
-          );
-        })}
+        {students.length > 0
+          ? students.map((s) => {
+              return (
+                <div className="class-student" key={s.name}>
+                  {s.name}
+                </div>
+              );
+            })
+          : "Loading students..."}
       </div>
 
       <div className="leggtil-elev">

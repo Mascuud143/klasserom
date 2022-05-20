@@ -6,6 +6,13 @@ import { useParams } from "react-router-dom";
 import { getGroups } from "../services/class.service";
 import { MdOutlineExpandMore } from "react-icons/md";
 
+function getWeekNumber(date) {
+  var d = new Date(date);
+  d.setHours(0, 0, 0, 0);
+  d.setDate(d.getDate() + 4 - (d.getDay() || 7));
+  return Math.ceil(((d - new Date(d.getFullYear(), 0, 1)) / 8.64e7 + 1) / 7);
+}
+
 export default function Groups({ userClass }) {
   const { classId } = useParams();
   const [projects, setProjects] = useState([]);
@@ -33,7 +40,7 @@ export default function Groups({ userClass }) {
       console.log(project);
       const g = {};
       g.project = project.project;
-
+      g.project.week = getWeekNumber(project.project.createdAt);
       const members = [];
       g.members = project.Group_members;
       g.members = g.members.map((m) => {
@@ -67,7 +74,10 @@ export default function Groups({ userClass }) {
             <div className="group-box" key={project.project.id}>
               <div className="class-group-header">
                 <p className="project-title">{project.project.title}</p>
-
+                <p className="week-number">
+                  Uka {project.project.week} -{" "}
+                  {new Date(project.project.createdAt).getFullYear()}
+                </p>
                 <MdOutlineExpandMore onClick={toggleGroupBox} size={40} />
               </div>
               <div className="class-groups hidden">

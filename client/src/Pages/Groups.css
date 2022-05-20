@@ -14,12 +14,12 @@
 }
 
 .group-box {
-  width: 35%;
-  min-height: auto;
+  width: 40%;
+  min-height: 100px;
   border-radius: 10px;
   background-color: #180a0a;
   color: #fff;
-  padding: 20px;
+  padding: 10px;
   margin: 20px;
 
   -webkit-box-shadow: 5px 6px 13px -9px #000000;
@@ -29,7 +29,7 @@
 .class-groups {
   background-color: #dfba58;
   color: #180a0a;
-  padding: 10px;
+  padding: 5px;
   border-radius: 10px;
 }
 
@@ -45,9 +45,10 @@
 }
 
 .project-title {
+  text-align: left;
   color: #dfba58;
   font-weight: bold;
-  font-size: 28px;
+  font-size: 21px;
 }
 
 .hidden {
@@ -55,7 +56,8 @@
 }
 
 .class-group-header {
-  padding: 0 10px;
+  position: relative;
+  padding: 0 5px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -66,7 +68,7 @@
 .class-group-members {
   display: flex;
   flex-wrap: wrap;
-  font-size: 25px;
+  font-size: 21px;
   justify-content: flex-start;
   align-items: center;
 }
@@ -75,10 +77,21 @@
   margin: 10px;
   border-radius: 10px;
   border: 1px solid #000;
-  padding: 10px;
+  padding: 7px;
 }
 
 .project-header-toggle {
   background-color: red;
   cursor: pointer;
+}
+
+.week-number {
+  font-size: 15px;
+  color: #fff;
+  font-weight: 100;
+  position: absolute;
+  /* top: -20px; */
+  /* left: 20px; */
+  bottom: -20px;
+  padding-bottom: 10px;
 }
