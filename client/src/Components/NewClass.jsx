@@ -17,8 +17,9 @@ export default function NewClass({ open, close }) {
       room: room.value,
     });
 
-    navigate("/classes");
     console.log(res);
+
+    navigate("/classes");
     close();
   };
 

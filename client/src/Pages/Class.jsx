@@ -56,7 +56,7 @@ export default function Class({ userClass }) {
                 </div>
               );
             })
-          : "Loading students..."}
+          : "LOADING... studenter"}
       </div>
 
       <div className="leggtil-elev">
