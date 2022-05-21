@@ -32,9 +32,22 @@ model Student{
   classId  Int
 }
 
+// model Class{
+// id Int @id @default(autoincrement())
+// name String 
+// klasseKode String? @unique @default("")
+// room String 
+// createdAt DateTime @default(now())
+// school String 
+// user   User   @relation(fields: [userId], references: [id])
+// userId  Int
+// Students Student[]
+// Projects Project[]
+// }
+
 model Class{
   id Int @id @default(autoincrement())
-  name String 
+  name String @unique
   klasseKode String? @unique @default("")
   room String @unique
   createdAt DateTime @default(now())

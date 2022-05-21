@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Nav from "./layout/Nav";
 import "./Groups.css";
 
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { getGroups } from "../services/class.service";
 import { MdOutlineExpandMore } from "react-icons/md";
 
@@ -68,7 +68,7 @@ export default function Groups({ userClass }) {
     return (
       <div className="groups-page">
         <Nav currentUser={userClass} />
-        <h1>{classId} - Projects</h1>
+        <Link to={`/classes/${classId}/`}>{classId} - Projects</Link>
         <div className="groups-container">
           {projectGroups.map((project) => (
             <div className="group-box" key={project.project.id}>
@@ -92,30 +92,6 @@ export default function Groups({ userClass }) {
                   </div>
                 ))}
               </div>
-              {/* 
-            <div className="class-groups">
-              <div className="class-group">
-                <p className="class-group-title">Group 1</p>
-                <div className="class-group-members">
-                  <div className="class-group-member">Ibsa</div>
-                  <div className="class-group-member">Mascuud</div>
-                </div>
-              </div>
-              <div className="class-group">
-                <p className="class-group-title">Group 1</p>
-                <div className="class-group-members">
-                  <div className="class-group-member">Ibsa</div>
-                  <div className="class-group-member">Mascuud</div>
-                </div>
-              </div>
-              <div className="class-group">
-                <p className="class-group-title">Group 1</p>
-                <div className="class-group-members">
-                  <div className="class-group-member">Ibsa</div>
-                  <div className="class-group-member">Mascuud</div>
-                </div>
-              </div>
-            </div> */}
             </div>
           ))}
         </div>
