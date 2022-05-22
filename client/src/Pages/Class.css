@@ -106,4 +106,19 @@
   position: absolute;
   top: -80px;
   left: 20px;
+  text-align: left;
+}
+
+.class-header a {
+  border-style: none;
+  padding: 7px;
+  border-radius: 10px;
+  /* color: #fff; */
+  color: #fff;
+  text-decoration: none;
+  background-color: #180a0a;
+}
+
+.class-project-title {
+  text-align: left;
 }

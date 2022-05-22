@@ -64,40 +64,41 @@ export default function Groups({ userClass }) {
   }
 
   console.log(projectGroups);
-  if (projectGroups.length > 0) {
-    return (
-      <div className="groups-page">
-        <Nav currentUser={userClass} />
-        <Link to={`/classes/${classId}/`}>{classId} - Projects</Link>
-        <div className="groups-container">
-          {projectGroups.map((project) => (
-            <div className="group-box" key={project.project.id}>
-              <div className="class-group-header">
-                <p className="project-title">{project.project.title}</p>
-                <p className="week-number">
-                  Uka {project.project.week} -{" "}
-                  {new Date(project.project.createdAt).getFullYear()}
-                </p>
-                <MdOutlineExpandMore onClick={toggleGroupBox} size={45} />
-              </div>
-              <div className="class-groups hidden">
-                {project.members.map((group, index) => (
-                  <div className="class-group">
-                    <p className="class-group-title">Group {index + 1}</p>
-                    <div className="class-group-members">
-                      {group.map((member) => (
-                        <div className="class-group-member">{member}</div>
-                      ))}
+
+  return (
+    <div className="groups-page">
+      <Nav currentUser={userClass} />
+      <Link className="group-page-header" to={`/classes/${classId}/`}>
+        {classId} - Projects
+      </Link>
+      <div className="groups-container">
+        {projectGroups.length > 0
+          ? projectGroups.map((project) => (
+              <div className="group-box" key={project.project.id}>
+                <div className="class-group-header">
+                  <p className="project-title">{project.project.title}</p>
+                  <p className="week-number">
+                    Uka {project.project.week} -{" "}
+                    {new Date(project.project.createdAt).getFullYear()}
+                  </p>
+                  <MdOutlineExpandMore onClick={toggleGroupBox} size={45} />
+                </div>
+                <div className="class-groups hidden">
+                  {project.members.map((group, index) => (
+                    <div className="class-group">
+                      <p className="class-group-title">Group {index + 1}</p>
+                      <div className="class-group-members">
+                        {group.map((member) => (
+                          <div className="class-group-member">{member}</div>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))
+          : "There are no projects in this class"}
       </div>
-    );
-  } else {
-    return <div>Loading groups.....</div>;
-  }
+    </div>
+  );
 }

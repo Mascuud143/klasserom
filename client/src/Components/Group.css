@@ -119,6 +119,13 @@
   padding: 20px;
   border-radius: 10px;
 }
+
+.group-options-container {
+  display: flex;
+  justify-content: space-around;
+
+  width: 100%;
+}
 main {
   width: 100%;
 }

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { getUser } from "../services/auth";
 import { Link, useNavigate } from "react-router-dom";
 import "./Dashboard.css";
 import { FaUser, FaMap } from "react-icons/fa";
@@ -14,14 +13,23 @@ import Nav from "./layout/Nav";
 import NewClassMap from "../Components/NewClassMap";
 import Group from "../Components/Group";
 import { getClasses } from "../services/class.service";
+import { getUser } from "../services/auth";
 
-export default function Dashboard({ userCurrent }) {
+export default function Dashboard() {
   const [classModalOpen, setclassModalOpen] = useState(false);
   const [groupModalOpen, setGroupModalOpen] = useState(false);
   const [classMapModalOpen, setclassMapModalOpen] = useState(false);
   const [classes, setclasses] = useState([]);
+  const [userCurrent, setUserCurrent] = useState({});
 
   const navigate = useNavigate();
+
+  async function getUserData() {
+    const token = localStorage.getItem("token");
+    const currentUser = await getUser(token);
+    setUserCurrent(currentUser);
+    return currentUser;
+  }
 
   const closeClassModal = () => {
     setclassModalOpen(!classModalOpen);
@@ -36,7 +44,7 @@ export default function Dashboard({ userCurrent }) {
   console.log(localStorage.getItem("token"));
 
   //get clasess
-  async function getUserData(user) {
+  async function getClassesData(user) {
     const token = localStorage.getItem("token");
     const userClasses = await getClasses(token);
     console.log(userClasses);
@@ -44,10 +52,16 @@ export default function Dashboard({ userCurrent }) {
   }
 
   useEffect(() => {
-    if (localStorage.getItem("token") === null) {
+    const response = getUserData();
+    console.log(userCurrent);
+    if (
+      localStorage.getItem("token") === null ||
+      userCurrent == "Unauthorized"
+    ) {
       navigate("/");
     }
 
+    getClassesData();
     getUserData();
   }, []);
 

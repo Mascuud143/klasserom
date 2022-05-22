@@ -138,15 +138,17 @@ export default function Group({ open, close, classes }) {
       </div>
       <form onSubmit={randomizeHandler} action="#">
         <div className="group-options">
-          <div>
-            <label htmlFor="class-name">Klasse</label>
-            <select onChange={classChangeHandler} name="classes" id="classes">
-              {classes.map((classroom) => (
-                <option key={classroom.id} value={classroom.name}>
-                  {classroom.name}
-                </option>
-              ))}
-            </select>
+          <div className="group-options-container">
+            <div>
+              <label htmlFor="class-name">Klasse</label>
+              <select onChange={classChangeHandler} name="classes" id="classes">
+                {classes.map((classroom) => (
+                  <option key={classroom.id} value={classroom.name}>
+                    {classroom.name}
+                  </option>
+                ))}
+              </select>
+            </div>
             <div>
               <label htmlFor="project-title">Prosjekt tittel</label>
               <input
@@ -157,9 +159,9 @@ export default function Group({ open, close, classes }) {
               />
             </div>
             <div>
-              <label htmlFor="antall-gruppe">antall grupper</label>
+              <label htmlFor="antall-gruppe">antall elever pr. gruppe</label>
               <input
-                placeholder="3"
+                placeholder="0"
                 name="antall"
                 id="antall-grupper"
                 type="text"

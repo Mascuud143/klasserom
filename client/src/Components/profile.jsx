@@ -10,6 +10,8 @@ export default function Profile({ profileUser, close }) {
     navigate("/");
   }
 
+  console.log(profileUser);
+
   return (
     <div className="Profile">
       <div onClick={close} className="Profile-close">

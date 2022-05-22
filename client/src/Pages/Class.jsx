@@ -78,10 +78,17 @@ export default function Class({ userClass }) {
     console.log(projectGroups);
     console.log(recentProject);
 
-    if (projectGroupData.length > 1) {
+    if (projectGroupData.length > 0 && projectGroupData.length !== 1) {
+      console.log("here");
       setRecentProject(projectGroupData[projectGroupData.length - 1]);
-    } else {
+      console.log(projectGroupData[projectGroupData.length - 1]);
+      console.log(recentProject);
+    } else if (projectGroupData.length === 1) {
+      console.log("wewe");
       setRecentProject(projectGroupData[0]);
+    } else {
+      console.log("hersssse");
+      setRecentProject([]);
     }
 
     // setRecentProject(projectGroupData.arr.slice(-1)[0]);
@@ -122,7 +129,7 @@ export default function Class({ userClass }) {
               })
             : "LOADING... studenter"}
         </div>
-        {recentProject.hasOwnProperty("project") && (
+        {(recentProject.hasOwnProperty("project") && (
           <div className="recent-project">
             <div className="class-group-box">
               <div className="class-group-header">
@@ -152,7 +159,8 @@ export default function Class({ userClass }) {
               <MdOutlineWhatshot /> Recent project
             </h4>
           </div>
-        )}
+        )) ||
+          "Your recent project will appear here"}
       </div>
       {/* <div className="leggtil-elev">
         <button onClick={openStudentModal}>Legg til elever +</button>
