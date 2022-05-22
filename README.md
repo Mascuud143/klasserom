@@ -10,3 +10,12 @@ You need:
 - Mysql
 
 ## Run the application locally
+
+After cloning the repository, you can run the application locally with:
+
+- cd into the both folder _/api_ and _/client_ foldiers
+- run the following command:
+
+`npm install `
+
+to install all the dependencies
