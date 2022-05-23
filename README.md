@@ -28,7 +28,7 @@ create .env file in the _/api_ folder with the variables:
 
 PORT=8080 or prefered port
 JWT_SECRET="secret"
-DATABSE="mysql://user:password@localhost:3306/klasserom"
+DATABASE="mysql://user:password@localhost:3306/klasserom"
 
 _replace user and password with your mysql user and password_
 
