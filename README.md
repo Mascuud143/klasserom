@@ -24,13 +24,13 @@ Create a database called _klasserom_ in mysql
 
 _ cd to /api_
 
-create .env int _/api_ folder in the root folder with the following content:
+create .env file in the _/api_ folder with the variables:
 
 PORT=8080 or prefered port
 JWT_SECRET="secret"
-DATABSE="mysql://user:password@jjo@localhost:3306/klasserom"
+DATABSE="mysql://user:password@localhost:3306/klasserom"
 
-_replace creditentials_
+_replace user and password with your mysql user and password_
 
 \_ run the following command to set up the database:
 `npx prisma generate`
@@ -42,7 +42,7 @@ _ cd to /api_
 \_ run the following command to populate the database:
 `npx prisma db seed`
 
-_This creates ad admin user with username name "admin" and password "admin"_
+_This creates an admin user with username name "admin" and password "admin"_
 
 #### Start the application
 
