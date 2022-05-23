@@ -8,6 +8,8 @@ import { FaUser, FaMap } from "react-icons/fa";
 export default function Classes({ user }) {
   const [classes, setclasses] = useState([]);
 
+  const navigate = useNavigate();
+
   async function getUserData(user) {
     const token = localStorage.getItem("token");
     const userClasses = await getClasses(token);
@@ -17,6 +19,13 @@ export default function Classes({ user }) {
   console.log(classes);
 
   useEffect(() => {
+    if (
+      localStorage.getItem("token") === null ||
+      localStorage.getItem("token") === undefined
+    ) {
+      navigate("/");
+    }
+
     getUserData();
   }, []);
 

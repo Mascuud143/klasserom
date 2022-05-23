@@ -20,16 +20,8 @@ export default function Dashboard() {
   const [groupModalOpen, setGroupModalOpen] = useState(false);
   const [classMapModalOpen, setclassMapModalOpen] = useState(false);
   const [classes, setclasses] = useState([]);
-  const [userCurrent, setUserCurrent] = useState({});
 
   const navigate = useNavigate();
-
-  async function getUserData() {
-    const token = localStorage.getItem("token");
-    const currentUser = await getUser(token);
-    setUserCurrent(currentUser);
-    return currentUser;
-  }
 
   const closeClassModal = () => {
     setclassModalOpen(!classModalOpen);
@@ -52,22 +44,19 @@ export default function Dashboard() {
   }
 
   useEffect(() => {
-    const response = getUserData();
-    console.log(userCurrent);
     if (
       localStorage.getItem("token") === null ||
-      userCurrent == "Unauthorized"
+      localStorage.getItem("token") === undefined
     ) {
       navigate("/");
     }
 
     getClassesData();
-    getUserData();
   }, []);
 
   return (
     <div className="dashboard">
-      <Nav currentUser={userCurrent} />
+      <Nav />
       {classMapModalOpen && (
         <NewClassMap classes={classes} close={closeClassMapModal} />
       )}

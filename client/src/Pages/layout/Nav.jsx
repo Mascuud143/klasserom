@@ -1,12 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Nav.css";
 import logo from "../../logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { AiFillSetting } from "react-icons/ai";
 import Profile from "../../Components/profile";
-
-export default function Nav({ currentUser }) {
+import { getUser } from "../../services/auth";
+export default function Nav() {
   const [profileOpen, setProfileOpen] = React.useState(false);
+  const [currentUser, setCurrentUser] = useState({});
+
+  async function getUserData() {
+    const token = localStorage.getItem("token");
+    const currentUser = await getUser(token);
+    setCurrentUser(currentUser);
+  }
+
+  useEffect(() => {
+    getUserData();
+  }, []);
 
   function closeProfile() {
     setProfileOpen(false);

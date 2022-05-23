@@ -5,14 +5,20 @@ import {
   Route,
   Link,
   useParams,
+  useNavigate,
 } from "react-router-dom";
 import { getStudents } from "../services/class.service";
 import { getGroups } from "../services/class.service";
 import Nav from "./layout/Nav";
 import NewStudent from "../Components/NewStudent";
+import EditStudent from "../Components/EditStudent";
 import "./Class.css";
 import Backdrop from "../Components/Backdrop";
-import { MdOutlineExpandMore, MdOutlineWhatshot } from "react-icons/md";
+import {
+  MdOutlineExpandMore,
+  MdOutlineWhatshot,
+  MdPersonAdd,
+} from "react-icons/md";
 
 function getWeekNumber(date) {
   var d = new Date(date);
@@ -24,7 +30,7 @@ function getWeekNumber(date) {
 function toggleGroupBox(e) {
   e.preventDefault();
   const group = e.target.parentNode.parentNode.parentNode;
-  const groupsBox = group.querySelector(".class-groups");
+  const groupsBox = group.querySelector(".class-class-groups");
   groupsBox.classList.toggle("hidden");
 }
 
@@ -33,10 +39,14 @@ export default function Class({ userClass }) {
   const [students, setStudents] = useState([]);
   const [school, setSchool] = useState("");
   const [newStudentOpen, setNewStudentOpen] = useState(false);
+  const [editStudentOpen, setEditStudentOpen] = useState(false);
   const [projects, setProjects] = useState([]);
   const [groups, setGroups] = useState([]);
   const [projectGroups, setProjectGroups] = useState([]);
   const [recentProject, setRecentProject] = useState({});
+  const [currentEditStudent, setCurrentEditStudent] = useState("");
+
+  const navigate = useNavigate();
 
   async function getStudentsData(user) {
     const token = localStorage.getItem("token");
@@ -47,6 +57,13 @@ export default function Class({ userClass }) {
   }
 
   useEffect(() => {
+    if (
+      localStorage.getItem("token") === null ||
+      localStorage.getItem("token") === undefined
+    ) {
+      navigate("/");
+    }
+    console.log("hhhh");
     getStudentsData();
     getProjects();
   }, []);
@@ -71,7 +88,7 @@ export default function Class({ userClass }) {
 
       return g;
     });
-    console.log(projectGroupData);
+
     setGroups(projectGroupData);
     setProjectGroups(projectGroupData);
     console.log(projectGroupData.length - 1);
@@ -79,15 +96,10 @@ export default function Class({ userClass }) {
     console.log(recentProject);
 
     if (projectGroupData.length > 0 && projectGroupData.length !== 1) {
-      console.log("here");
       setRecentProject(projectGroupData[projectGroupData.length - 1]);
-      console.log(projectGroupData[projectGroupData.length - 1]);
-      console.log(recentProject);
     } else if (projectGroupData.length === 1) {
-      console.log("wewe");
       setRecentProject(projectGroupData[0]);
     } else {
-      console.log("hersssse");
       setRecentProject([]);
     }
 
@@ -98,8 +110,17 @@ export default function Class({ userClass }) {
     setNewStudentOpen(true);
   }
 
-  function closeStudentModal() {
+  function closeStudentModal(e) {
     setNewStudentOpen(false);
+  }
+
+  function closeEditStudentModal() {
+    setEditStudentOpen(false);
+  }
+
+  function openEditStudentModal(e) {
+    setEditStudentOpen(true);
+    setCurrentEditStudent(e.target.textContent);
   }
 
   return (
@@ -108,21 +129,35 @@ export default function Class({ userClass }) {
       {newStudentOpen && (
         <NewStudent theClassId={classId} close={closeStudentModal} />
       )}
+      {editStudentOpen && (
+        <EditStudent
+          student={currentEditStudent}
+          theClassId={classId}
+          close={closeEditStudentModal}
+        />
+      )}
       {newStudentOpen && <Backdrop close={closeStudentModal} />}
+      {editStudentOpen && <Backdrop close={closeEditStudentModal} />}
       <div className="class-header">
         <h1>Klasse {classId}</h1>
         <p>{school}</p>
         <Link to={`/classes/${classId}/groups`}>Prosjekter</Link>
       </div>
       <div className="leggtil-elev">
-        <button onClick={openStudentModal}>Legg til elever +</button>
+        <button onClick={openStudentModal}>
+          Legg til elever <MdPersonAdd />
+        </button>
       </div>
       <div className="class-main">
         <div className="students-list">
           {students.length > 0
             ? students.map((s) => {
                 return (
-                  <div className="class-student" key={s.name}>
+                  <div
+                    onClick={openEditStudentModal}
+                    className="class-student"
+                    key={s.name}
+                  >
                     {s.name}
                   </div>
                 );
@@ -142,7 +177,7 @@ export default function Class({ userClass }) {
                 </p>
                 <MdOutlineExpandMore onClick={toggleGroupBox} size={45} />
               </div>
-              <div className="class-groups hidden">
+              <div className="class-class-groups hidden">
                 {recentProject.members.map((group, index) => (
                   <div className="class-group">
                     <p className="class-group-title">Group {index + 1}</p>

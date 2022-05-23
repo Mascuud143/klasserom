@@ -69,7 +69,7 @@ export default function Groups({ userClass }) {
     <div className="groups-page">
       <Nav currentUser={userClass} />
       <Link className="group-page-header" to={`/classes/${classId}/`}>
-        {classId} - Projects
+        <h2>{classId} - Projects </h2>
       </Link>
       <div className="groups-container">
         {projectGroups.length > 0

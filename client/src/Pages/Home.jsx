@@ -1,9 +1,24 @@
 import "../App.css";
 import "./Home.css";
 import "./index.css";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { useEffect } from "react";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link,
+  useNavigate,
+} from "react-router-dom";
 import logo from "../logo.png";
 function Home() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("token") !== null) {
+      navigate("/Dashboard");
+    }
+  }, []);
+
   return (
     <div className="container-page">
       <div className="logo-home">

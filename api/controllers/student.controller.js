@@ -63,3 +63,45 @@ module.exports.createStudent = async function (req, res) {
     return res.status(400).json(error.message);
   }
 };
+module.exports.deleteStudent = async function (req, res) {
+  const { name } = req.body;
+  const userId = req.user.id;
+
+  const theClass = req.params.id;
+  console.log(name);
+  try {
+    const newClass = await prisma.class.findUnique({
+      where: {
+        name: theClass,
+      },
+    });
+    console.log("-------");
+    console.log(newClass);
+    const studentToDelete = await prisma.student.findMany({
+      where: {
+        name: name,
+        class: {
+          connect: {
+            name: theClass,
+          },
+        },
+      },
+    });
+
+    console.log(studentToDelete);
+
+    // const deletedStudent = await prisma.student.delete({
+    //   data: {
+    //     name: name,
+    //     class: {
+    //       connect: {
+    //         name: theClass,
+    //       },
+    //     },
+    //   },
+    // });
+    return res.status(201).json(studentToDelete);
+  } catch (error) {
+    return res.status(400).json(error.message);
+  }
+};

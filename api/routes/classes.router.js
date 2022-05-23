@@ -10,6 +10,7 @@ const { createGroup, getGroups } = require("../controllers/group.controller");
 const {
   getStudents,
   createStudent,
+  deleteStudent,
 } = require("../controllers/student.controller");
 const { protect, restrictTo } = require("../util/auth");
 
@@ -21,6 +22,7 @@ router
   .get("/", protect, getClasses)
   .get("/:id/students", protect, restrictTo("TEACHER"), getStudents)
   .post("/:id/students", protect, restrictTo("TEACHER"), createStudent)
+  .delete("/:id/students", protect, restrictTo("TEACHER"), deleteStudent)
   .post("/:id/groups", protect, restrictTo("TEACHER"), createGroup)
   .get("/:id/groups", protect, restrictTo("TEACHER"), getGroups);
 

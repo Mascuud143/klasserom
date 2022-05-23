@@ -1,28 +1,33 @@
 Issues/Bugs/til forbedelse:
 
 UI:
-
-	-- Når man logger inn, Det kommer ikke data på profile component med engang. det må refreshes.
+	-- 
 	-- Styling generelt
 
 LOGIN:
 	-- Sjekk for at token er gyldig 
-	-- 
+	--
 
 - Optimization:
 	-- bruke opplevelse er ikke helt greit; f.eks når det loader ny data, blir det tomt. (forslag: loading... kan vises)
 	-- 
-- 
+- TOKEN:
+	-- Alltid sjekk for at token er gyldig før sending av forespørsel 
 
 PASSWORD:
-	-- glemt / endre passord må implementres, la brukere/lærere endre passord
+	-- Implemetere glemt / endre passord må implementres, la brukere/lærere endre passord
 	-- 
 
 
 RYDDING:
-	-- Det er mye repetisjon av kode
+	-- Det er repetisjon av kode
 	-- Trenger mer kommentar som forklarer kode
 
 SERVER:
-	-- Server responses kunne ha vært bedre.
+	-- Server responses kan ha vært bedre.
+	-- 
+
+
+MANGLER:
+	-- DELETE og UPDATE funksjoner i server, har ikke implementert enda
 	-- 
