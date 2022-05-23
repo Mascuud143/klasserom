@@ -17,7 +17,7 @@ const { protect, restrictTo } = require("../util/auth");
 const router = express.Router();
 
 router
-  .post("/", protect, createClass)
+  .post("/", protect,  restrictTo("TEACHER"),createClass)
   .get("/:id", protect, getClass)
   .get("/", protect, getClasses)
   .get("/:id/students", protect, restrictTo("TEACHER"), getStudents)
