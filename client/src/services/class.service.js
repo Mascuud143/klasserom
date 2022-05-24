@@ -1,5 +1,20 @@
-//class service to handle the requests & responses to the server
+// //class service to handle the requests & responses to the server
+// import jwt_decode from "jwt-decode";
+// let tokenValid = false;
+// let token = localStorage.getItem("token");
+// let decodedToken = jwt_decode(token);
+// console.log("Decoded Token", decodedToken);
+// let currentDate = new Date();
 
+// // JWT exp is in seconds
+// if (decodedToken.exp * 1000 < currentDate.getTime()) {
+//   console.log("Token expired.");
+// } else {
+//   console.log("Valid token");
+//   tokenValid = true;
+// }
+
+//
 export async function createClass(token, { name, school, room }) {
   const response = await fetch(`http://127.0.0.1:8080/api/v1/classes`, {
     method: "POST",

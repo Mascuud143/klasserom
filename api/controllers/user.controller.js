@@ -69,7 +69,7 @@ module.exports.login = async function (req, res) {
 
     //tildel token
     const token = await jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
-      expiresIn: "4h",
+      expiresIn: "10s",
     });
 
     return res.json({ token });
@@ -108,43 +108,6 @@ module.exports.register = async function (req, res) {
     res.send(newUser);
   } catch (erorr) {
     res.send(erorr.message);
-  }
-};
-
-//login
-module.exports.login = async function (req, res) {
-  const { username, password } = req.body;
-  console.log(username, password);
-  //sjekk for tomt input
-  if (!username || !password) {
-    return res.status(400).json("All inputs are required");
-  }
-  try {
-    //finn bruker
-    const user = await prisma.user.findUnique({
-      where: {
-        username,
-      },
-    });
-
-    //sjekk om bruker finnes
-    if (!user) {
-      return res.status(400).json("User does not exist");
-    }
-
-    //sjekk om passord stemmer
-    if (!(await bycrypt.compare(password, user.password))) {
-      return res.status(400).json("Incorrect username or password");
-    }
-
-    //tildel token
-    const token = await jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
-      expiresIn: "2h",
-    });
-
-    return res.json({ token });
-  } catch (error) {
-    res.send(error.message);
   }
 };
 

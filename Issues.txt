@@ -1,7 +1,8 @@
 Issues/Bugs/til forbedelse:
 
 UI:
-	-- 
+	-- Farger
+	-- Layout
 	-- Styling generelt
 
 LOGIN:
@@ -9,7 +10,7 @@ LOGIN:
 	--
 
 - Optimization:
-	-- bruke opplevelse er ikke helt greit; f.eks når det loader ny data, blir det tomt. (forslag: loading... kan vises)
+	-- bruke opplevelse er ikke helt greit; f.eks når det loades ny data, blir det tomt på UI. (forslag: loading... kan vises)
 	-- 
 - TOKEN:
 	-- Alltid sjekk for at token er gyldig før sending av forespørsel 
@@ -24,10 +25,11 @@ RYDDING:
 	-- Trenger mer kommentar som forklarer kode
 
 SERVER:
-	-- Server responses kan ha vært bedre.
+	-- Server responses kan  være bedre.
 	-- 
 
 
 MANGLER:
 	-- DELETE og UPDATE funksjoner i server, har ikke implementert enda
+	-- NYTTKART funksjoner
 	-- 
