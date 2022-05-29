@@ -21,7 +21,7 @@ export default function Admin({ userClass }) {
   }
 
   return (
-    <div>
+    <div className="admin-dashboard">
       <h1>Admin</h1>
 
       <h2>Lag ny brukere</h2>
