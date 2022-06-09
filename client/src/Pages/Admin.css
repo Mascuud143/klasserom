@@ -1,0 +1,11 @@
+.admin-dashboard {
+  height: 100vh;
+  width: 100vh;
+}
+
+.create-user form {
+  width: 100%;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}

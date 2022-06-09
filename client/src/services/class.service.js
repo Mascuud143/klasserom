@@ -17,9 +17,9 @@
 //
 
 const PORT = 8000;
-
+const Host = "localhost";
 export async function createClass(token, { name, school, room }) {
-  const response = await fetch(`http://127.0.0.1:${PORT}/api/v1/classes`, {
+  const response = await fetch(`http://${Host}:${PORT}/api/v1/classes`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -36,7 +36,7 @@ export async function createClass(token, { name, school, room }) {
   return data;
 }
 export async function getClasses(token) {
-  const response = await fetch(`http://127.0.0.1:${PORT}/api/v1/classes`, {
+  const response = await fetch(`http://${Host}:${PORT}/api/v1/classes`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -47,7 +47,7 @@ export async function getClasses(token) {
   return data;
 }
 export async function joinClass(code) {
-  const response = await fetch(`http://127.0.0.1:${PORT}/api/v1/join`, {
+  const response = await fetch(`http://${Host}:${PORT}/api/v1/join`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -59,7 +59,7 @@ export async function joinClass(code) {
 
 export async function createStudent(token, name, classId) {
   const response = await fetch(
-    `http://127.0.0.1:${PORT}/api/v1/classes/${classId}/students/`,
+    `http://${Host}:${PORT}/api/v1/classes/${classId}/students/`,
     {
       method: "POST",
       headers: {
@@ -77,7 +77,7 @@ export async function createStudent(token, name, classId) {
 
 export async function getClass(token, className) {
   const response = await fetch(
-    `http://127.0.0.1:${PORT}/api/v1/classes/${className}`,
+    `http://${Host}:${PORT}/api/v1/classes/${className}`,
     {
       method: "GET",
       headers: {
@@ -91,7 +91,7 @@ export async function getClass(token, className) {
 }
 export async function getStudents(token, className) {
   const response = await fetch(
-    `http://127.0.0.1:${PORT}/api/v1/classes/${className}/students/`,
+    `http://${Host}:${PORT}/api/v1/classes/${className}/students/`,
     {
       method: "GET",
       headers: {
@@ -105,7 +105,7 @@ export async function getStudents(token, className) {
 }
 export async function saveGroups(token, title, members, className) {
   const response = await fetch(
-    `http://127.0.0.1:${PORT}/api/v1/classes/${className}/groups/`,
+    `http://${Host}:${PORT}/api/v1/classes/${className}/groups/`,
     {
       method: "POST",
       headers: {
@@ -123,7 +123,7 @@ export async function saveGroups(token, title, members, className) {
 }
 export async function getGroups(token, className) {
   const response = await fetch(
-    `http://127.0.0.1:${PORT}/api/v1/classes/${className}/groups/`,
+    `http://${Host}:${PORT}/api/v1/classes/${className}/groups/`,
     {
       method: "GET",
       headers: {
